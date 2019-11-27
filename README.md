@@ -1,8 +1,8 @@
-Maybe not as much as a manager as downloader.
+Maybe not as much as a manager, rather a downloader.
 
 The function of this plugin is simple: _download, update and enable using `:packadd`_
 
-It's limited to only GitHub repositories
+It's limited only to GitHub repositories
 
 ## Installation
 
@@ -20,14 +20,14 @@ packadd minPlug | call minPlug#() " initialize minPlug
 
 ## Usage
 
-This plugin provides two commands: `Plugin` and `GetPlugins`
+This plugin provides two commands: `MinPlug` and `MinPlugInstall`
 
 * **Add plugin**
 
-  After initialization of minPlug, use `Plugin` in _vimrc_ in such fasion:
+  After initialization of minPlug, use `MinPlug` in _vimrc_ in such fasion:
 
 ```vim
-Plugin "username/repo"
+MinPlug "username/repo"
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To disable plugin, simply comment out this line
@@ -35,17 +35,17 @@ Plugin "username/repo"
 * **Download/update plugins**
 
 ```vim
-:GetPlugins
+:MinPlugInstall
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When it finishes, only the message `DONE` will be shown
 
 * **Delete**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove `Plugin` line in _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove `MinPlug "username/repo"` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
 
 ---
 
 #### Additional note
 
-If you added something to the `packpath` option, ensure that your desired destination is first in the list (i.e. use `^=`, e.g. `set packpath^=$XDG_DATA_HOME/vim`)
+If you added something to the `packpath` option, ensure that your desired destination is first in the list (use `^=`, e.g. `set packpath^=$XDG_DATA_HOME/vim`)

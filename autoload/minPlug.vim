@@ -24,7 +24,7 @@ function! s:GetPlugins()
     echo "DONE"
 endfunction
 
-command! GetPlugins call <SID>GetPlugins()
-command! -nargs=1 Plugin call add(s:plugins, <args>) | execute "silent! packadd ".substitute(<args>, ".*\/", "", "")
+command! MinPlugInstall call <SID>GetPlugins()
+command! -nargs=1 MinPlug call add(s:plugins, <args>) | execute "silent! packadd ".substitute(<args>, ".*\/", "", "")
 
 let g:loaded_minPlug = 1
