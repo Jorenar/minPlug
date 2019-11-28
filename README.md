@@ -4,6 +4,8 @@ The function of this plugin is simple: _download, update and enable using `:pack
 
 It's limited only to GitHub repositories
 
+Best utlized with, nomen omen, minimal list of plugins
+
 ## Installation
 
 Execute in shell:

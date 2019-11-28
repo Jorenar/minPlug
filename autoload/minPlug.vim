@@ -16,7 +16,7 @@ function! s:GetPlugins()
         let plugin_name = substitute(plugin, ".*\/", "", "")
         let plugin_dir = s:plugins_dir."/".plugin_name
         let github_url = "https://github.com/".plugin
-        let cmd = "git clone ".github_url." ".plugin_dir." 2> /dev/null || (cd ".plugin_dir." ; git pull)"
+        let cmd = "git clone --depth=1 ".github_url." ".plugin_dir." 2> /dev/null || (cd ".plugin_dir." ; git pull)"
         call system(cmd)
         execute "packadd ".plugin_name
     endfor
