@@ -21,7 +21,7 @@ function! s:GetPlugins()
         execute "packadd ".plugin_name
     endfor
     silent! helptags ALL
-    echo "DONE"
+    echo "minPlug: DONE"
 endfunction
 
 function! s:MinPlug(plugin, ...) abort
