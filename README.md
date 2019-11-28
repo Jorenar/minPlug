@@ -29,10 +29,14 @@ This plugin provides two commands: `MinPlug` and `MinPlugInstall`
   After initialization of minPlug, use `MinPlug` in _vimrc_ in such fasion:
 
 ```vim
-MinPlug "username/repo"
+MinPlug username/repo branch
 ```
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If `branch` isn't provided, as defualt `master` will be used
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To disable plugin, simply comment out this line
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Practiacal example: `MinPlug Jorengarenar/vim-darkness`
 
 * **Download/update plugins**
 
@@ -44,7 +48,7 @@ MinPlug "username/repo"
 
 * **Delete**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove `MinPlug "username/repo"` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove `MinPlug username/repo` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
 
 ---
 
