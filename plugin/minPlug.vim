@@ -3,18 +3,14 @@
 
 if exists('g:loaded_minPlug') | finish | endif
 
-function! minPlug#()
-endfunction
-
-let s:plugins_dir = substitute(&packpath, ",.*", "", "")."/pack/plugins/opt"
-call mkdir(s:plugins_dir, 'p')
-
 let s:plugins = { "Jorengarenar/minPlug" : "master" }
 
-function! s:GetPlugins()
+function! s:MinPlugInstall() abort
+    let plugins_dir = substitute(&packpath, ",.*", "", "")."/pack/plugins/opt"
+    call mkdir(plugins_dir, 'p')
     for [plugin, branch] in items(s:plugins)
         let plugin_name = substitute(plugin, ".*\/", "", "")
-        let plugin_dir = s:plugins_dir."/".plugin_name
+        let plugin_dir = plugins_dir."/".plugin_name
         let github_url = "https://github.com/".plugin
         let cmd = "git clone --depth=1 -b ".branch." --single-branch ".github_url." ".plugin_dir." 2> /dev/null || (cd ".plugin_dir." ; git pull)"
         call system(cmd)
@@ -29,7 +25,7 @@ function! s:MinPlug(plugin, ...) abort
     execute "silent! packadd ".substitute(a:plugin, ".*\/", "", "")
 endfunction
 
-command! MinPlugInstall call <SID>GetPlugins()
+command! MinPlugInstall call <SID>MinPlugInstall()
 command! -nargs=+ MinPlug call <SID>MinPlug(<f-args>)
 
 let g:loaded_minPlug = 1

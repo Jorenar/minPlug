@@ -17,7 +17,7 @@ git clone https://github.com/Jorengarenar/minPlug.git ~/.vim/pack/plugin/opt/min
 and in _vimrc_ add:
 
 ```vim
-packadd minPlug | call minPlug#() " initialize minPlug
+packadd minPlug " initialize minPlug
 ```
 
 ## Usage
