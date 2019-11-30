@@ -38,6 +38,22 @@ MinPlug username/repo branch
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Practiacal example: `MinPlug Jorengarenar/vim-darkness`
 
+* **On-demand loading**
+
+```vim
+MinPlug! username/repo branch
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will only add plugin to list, so you can download it, but it won't start automatically
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can then use `autocmd` (or _ftplugin_) to load it on demand using `packadd`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example:
+
+```vim
+MinPlug! Jorengarenar/pseudoClip | autocmd filetype cpp packadd pseudoClip
+```
+
 * **Download/update plugins**
 
 ```vim

@@ -20,12 +20,14 @@ function! s:MinPlugInstall() abort
     echo "minPlug: DONE"
 endfunction
 
-function! s:MinPlug(plugin, ...) abort
+function! s:MinPlug(bang, plugin, ...) abort
     let s:plugins[a:plugin] = get(a:, 1, "master")
-    execute "silent! packadd ".substitute(a:plugin, ".*\/", "", "")
+    if !a:bang
+        execute "silent! packadd ".substitute(a:plugin, ".*\/", "", "")
+    endif
 endfunction
 
-command! MinPlugInstall call <SID>MinPlugInstall()
-command! -nargs=+ MinPlug call <SID>MinPlug(<f-args>)
+command! -bar MinPlugInstall call <SID>MinPlugInstall()
+command! -bang -bar -nargs=+ MinPlug call <SID>MinPlug(<bang>0, <f-args>)
 
 let g:loaded_minPlug = 1
