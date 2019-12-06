@@ -23,7 +23,7 @@ endfunction
 function! s:MinPlug(bang, plugin, ...) abort
     let s:plugins[a:plugin] = get(a:, 1, "master")
     if !a:bang
-        execute "silent! packadd ".substitute(a:plugin, ".*\/", "", "")
+        execute "silent! packadd! ".substitute(a:plugin, ".*\/", "", "")
     endif
 endfunction
 
