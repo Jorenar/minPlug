@@ -6,7 +6,7 @@ if exists('g:loaded_minPlug') | finish | endif
 let s:plugins = { "Jorengarenar/minPlug" : "master" }
 
 function! s:MinPlugInstall() abort
-    let plugins_dir = substitute(&packpath, ",.*", "", "")."/pack/plugins/opt"
+    let plugins_dir = substitute(&packpath, ",.*", "/pack/plugins/opt", "")
     call mkdir(plugins_dir, 'p')
     for [plugin, branch] in items(s:plugins)
         let plugin_name = substitute(plugin, ".*\/", "", "")
