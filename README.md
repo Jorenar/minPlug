@@ -69,6 +69,12 @@ MinPlug! Jorengarenar/pseudoClip | autocmd filetype cpp packadd pseudoClip
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When it finishes, only the message `DONE` will be shown
 
+* **Download/update plugins overriding local changes**
+
+```vim
+:MinPlugInstall!
+```
+
 * **Delete**
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove `MinPlug username/repo` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
