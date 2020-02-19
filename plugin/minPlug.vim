@@ -10,7 +10,7 @@ let s:plugins = { "Jorengarenar/minPlug" : "master" }
 function! s:MinPlugInstall(bang) abort
     let plugins_dir = substitute(&packpath, ",.*", "/pack/plugins/opt", "")
     let override = a:bang ? "(git reset --hard HEAD && git clean -f -d); " : ""
-    call mkdir(plugins_dir, 'p')
+    silent! call mkdir(plugins_dir, 'p')
     for [plugin, branch] in items(s:plugins)
         let plugin_name = substitute(plugin, ".*\/", "", "")
         let plugin_dir = plugins_dir."/".plugin_name
@@ -26,7 +26,7 @@ endfunction
 function! s:MinPlug(bang, plugin, ...) abort
     let s:plugins[a:plugin] = get(a:, 1, "master")
     if !a:bang
-        execute "silent! packadd! ".substitute(a:plugin, ".*\/", "", "")
+        execute "silent! packadd ".substitute(a:plugin, ".*\/", "", "")
     endif
 endfunction
 
