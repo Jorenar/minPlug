@@ -21,8 +21,8 @@ packadd minPlug " initialize minPlug
 If you want to have _minPlug_ **automatically installed**, add this to your _vimrc_:
 
 ```vim
-if empty(glob(substitute(&packpath, ",.*", "/pack/plugins/opt/minPlug", "")))
-    call system("git clone --depth=1 https://github.com/Jorengarenar/minPlug ".substitute(&packpath, ",.*", "/pack/plugins/opt/minPlug", ""))
+if empty(glob(substitute(&packpath, ",.*", "", "")."/pack/plugins/opt/minPlug"))
+    call system("git clone --depth=1 https://github.com/Jorengarenar/minPlug ".substitute(&packpath, ",.*", "", "")."/pack/plugins/opt/minPlug")
     autocmd VimEnter * silent! MinPlugInstall | echo "minPlug: INSTALLED"
 endif
 ```
