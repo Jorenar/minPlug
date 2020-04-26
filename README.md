@@ -21,17 +21,18 @@ packadd minPlug " initialize minPlug
 If you want to have _minPlug_ **automatically installed**, add this to your _vimrc_:
 
 ```vim
-if empty(glob(substitute(&packpath, ",.*", "", "")."/pack/plugins/opt/minPlug"))
-    call system("git clone --depth=1 https://github.com/Jorengarenar/minPlug ".substitute(&packpath, ",.*", "", "")."/pack/plugins/opt/minPlug")
-    autocmd VimEnter * silent! MinPlugInstall | echo "minPlug: INSTALLED"
-endif
+if empty(glob(substitute(&packpath, ",.*", "", "")."/pack/plugins/opt/minPlug")) " {{{
+  call system("git clone --depth=1 https://github.com/Jorengarenar/minPlug ".
+        \ substitute(&packpath, ",.*", "", "")."/pack/plugins/opt/minPlug")
+  autocmd VimEnter * silent! MinPlugInstall | echo "minPlug: INSTALLED"
+endif " }}}
 ```
 
 ## Usage
 
 This plugin provides two commands: `MinPlug` and `MinPlugInstall`
 
-* **Add plugin**
+### Add plugin
 
   After initialization of minPlug, use `MinPlug` in _vimrc_ in such fasion:
 
@@ -39,45 +40,49 @@ This plugin provides two commands: `MinPlug` and `MinPlugInstall`
 MinPlug username/repo branch
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If `branch` isn't provided, as defualt `master` will be used
+If `branch` isn't provided, as defualt `master` will be used
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To disable plugin, simply comment out this line
+To disable plugin, simply comment out this line
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Practiacal example: `MinPlug Jorengarenar/vim-darkness`
+Practiacal example: `MinPlug Jorengarenar/vim-darkness`
 
-* **On-demand loading**
+### On-demand loading
+
+There is no on-demand loading in _minPlug_, but you can do:
 
 ```vim
 MinPlug! username/repo branch
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Will only add plugin to list, so you can download it, but it won't start automatically
+This will only add plugin to list, so you can download it, but it won't start automatically
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can then use `autocmd` (or _ftplugin_) to load it on demand using `packadd`
+Then you can use `autocmd` (or _ftplugin_) to load it on demand using `packadd`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example:
+Example:
 
 ```vim
-MinPlug! Jorengarenar/pseudoClip | autocmd filetype cpp packadd pseudoClip
+MinPlug! Jorengarenar/fauxClip | autocmd filetype cpp packadd fauxClip
 ```
 
-* **Download/update plugins**
+_**Please note, that this way is prone to bugs.**_
+
+### Download/update plugins
 
 ```vim
 :MinPlugInstall
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When it finishes, only the message `DONE` will be shown
+When it finishes, only the message `DONE` will be shown
 
-* **Download/update plugins overriding local changes**
+### Download/update plugins overriding local changes
 
 ```vim
 :MinPlugInstall!
 ```
 
-* **Delete**
+### Delete
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove `MinPlug username/repo` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
+Remove `MinPlug username/repo` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
 
 ---
 
