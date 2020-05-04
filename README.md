@@ -9,7 +9,7 @@ Best utlized with, nomen omen, minimal list of plugins
 Execute in shell:
 
 ```sh
-git clone https://github.com/Jorengarenar/minPlug.git ~/.vim/pack/plugin/opt/minPlug/
+git clone https://github.com/Jorengarenar/minPlug.git ~/.vim/pack/plugins/opt/minPlug/
 ```
 
 and in _vimrc_ add:
