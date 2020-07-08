@@ -1,8 +1,8 @@
 " minPlug - Most minimalistic plugin "manager" I could heve come up with
 " Maintainer:  Jorengarenar <https://joren.ga>
+" License:     MIT
 
 if exists('g:loaded_minPlug') | finish | endif
-
 let s:cpo_save = &cpo | set cpo&vim
 
 let s:plugins = { "Jorengarenar/minPlug" : "master" }
@@ -34,5 +34,4 @@ command! -bang -bar MinPlugInstall call <SID>MinPlugInstall(<bang>0)
 command! -bang -bar -nargs=+ MinPlug call <SID>MinPlug(<bang>0, <f-args>)
 
 let g:loaded_minPlug = 1
-
 let &cpo = s:cpo_save | unlet s:cpo_save
