@@ -30,11 +30,12 @@ endif " }}}
 
 ## Usage
 
-This plugin provides two commands: `MinPlug` and `MinPlugInstall`
+This plugin provides two commands: `MinPlug` and `MinPlugInstall`;
+and reads one variable: `g:minPlug_singleFiles`.
 
 ### Add plugin
 
-  After initialization of minPlug, use `MinPlug` in _vimrc_ in such fasion:
+After initialization of minPlug, use `MinPlug` in _vimrc_ in such fasion:
 
 ```vim
 MinPlug username/repo branch
@@ -44,7 +45,30 @@ If `branch` isn't provided, as defualt `master` will be used
 
 To disable plugin, simply comment out this line
 
-Practiacal example: `MinPlug Jorengarenar/vim-darkness`
+Practiacal example: `MinPlug Jorengarenar/miniSnip`
+
+### Single files
+
+If you don't want to download whole repository just for one file (e.g. colorscheme),
+just add it to `g:minPlug_singleFiles` dictionary variable in the following manner:
+```vim
+let g:minPlug_singleFiles = {
+      \ "filename" : [ "subdir", "URL" ],
+      \ }
+```
+
+File from `URL` will be saved as `filename` in `subdir` of `~/.vim/pack/plugins/start/singleFiles`.
+
+_That means it will be loaded even if entry was to be deleted from the dictionary!_
+
+Example:
+```vim
+let g:minPlug_singleFiles = {
+      \ "darkness.vim" : [ "colors", "https://raw.githubusercontent.com/Jorengarenar/vim-darkness/master/colors/darkness.vim" ],
+      \ }
+```
+
+_To use this feature you need to have [`curl`](https://curl.se/) installed!_
 
 ### On-demand loading
 
@@ -88,4 +112,5 @@ Remove `MinPlug username/repo` line from _vimrc_, then go to `~/.vim/pack/plugin
 
 #### Additional note
 
-If you added something to the `packpath` option, ensure that your desired destination is first in the list (use `^=`, e.g. `set packpath^=$XDG_DATA_HOME/vim`)
+If you added something to the `packpath` option, ensure that your desired
+destination is first in the list (use `^=`, e.g. `set packpath^=$XDG_DATA_HOME/vim`)
