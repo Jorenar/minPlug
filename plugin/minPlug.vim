@@ -1,17 +1,18 @@
 " minPlug
-" Maintainer: Jorengarenar <https://joren.ga>
+" Maintainer: Jorengarenar <dev@joren.ga>
 " License:    MIT
 
 if exists('g:loaded_minPlug') | finish | endif
 let s:cpo_save = &cpo | set cpo&vim
 
-let s:plugins = { "Jorengarenar/minPlug" : "master" }
+let s:plugins = get(g:, "minPlug_updateSelf", 1) ? { "Jorengarenar/minPlug" : "master" } : {}
 
 fu! s:install(b) abort
   let packDir = substitute(&packpath, ",.*", "", "")."/pack/plugins"
   let override = a:b ? "(git reset --hard HEAD && git clean -f -d); " : ""
   sil! call mkdir(packDir."/opt", 'p')
   for [plugin, branch] in items(s:plugins)
+    if get(g:, "minPlug_echo", 1) | echo plugin | endif
     let name = substitute(plugin, ".*\/", "", "")
     let [ dir, url ] = [ packDir."/opt/".name, "https://github.com/".plugin ]
     call system("git clone --recurse --depth=1 -b ".branch." --single-branch ".url.
@@ -19,9 +20,10 @@ fu! s:install(b) abort
     exe "pa ".name
   endfor
   sil! helpt ALL
-  for [ name, foo ] in items(get(g:, "minPlug_singleFiles", {}))
-    let dir = packDir."/start/singleFiles/".foo[0]
-    call system("curl --create-dirs -o ".dir."/".name." -L ".foo[1])
+  for [ name, o ] in items(get(g:, "minPlug_singleFiles", {}))
+    if get(g:, "minPlug_echo", 1) | echo "file: ".o[0]."/".name | endif
+    let dir = (exists("o[2]") ? o[2] : packDir."/start/singleFiles")."/".o[0]
+    call system("curl --create-dirs -o ".dir."/".name." -L ".o[1])
   endfor
   ec "minPlug: DONE"
 endf

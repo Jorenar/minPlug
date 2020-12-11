@@ -4,12 +4,18 @@ It's limited only to GitHub repositories
 
 Best utlized with, nomen omen, minimal list of plugins
 
+<sub>
+<code>&lt;PACKDIR&gt;</code> in this README  is a placeholder for
+<code>substitute(&packpath, ",.*", "", "")."/pack/plugins"</code>
+which by default equals to <code>~/.vim/pack/plugins</code>.
+</sub>
+
 ## Installation
 
 Execute in shell:
 
 ```sh
-git clone https://github.com/Jorengarenar/minPlug.git ~/.vim/pack/plugins/opt/minPlug/
+git clone https://github.com/Jorengarenar/minPlug.git <PACKDIR>/plugins/opt/minPlug/
 ```
 
 and in _vimrc_ add:
@@ -29,9 +35,6 @@ endif " }}}
 ```
 
 ## Usage
-
-This plugin provides two commands: `MinPlug` and `MinPlugInstall`;
-and reads one variable: `g:minPlug_singleFiles`.
 
 ### Add plugin
 
@@ -53,11 +56,13 @@ If you don't want to download whole repository just for one file (e.g. colorsche
 just add it to `g:minPlug_singleFiles` dictionary variable in the following manner:
 ```vim
 let g:minPlug_singleFiles = {
-      \ "filename" : [ "subdir", "URL" ],
+      \ "filename" : [ "subdir", "URL", "basedir" ],
       \ }
 ```
 
-File from `URL` will be saved as `filename` in `subdir` of `~/.vim/pack/plugins/start/singleFiles`.
+`basedir` is optional and defaults to `<PACKDIR>/start/singleFiles`.
+
+File from `URL` will be saved as `filename` in `subdir` of `basedir`
 
 _That means it will be loaded even if entry was to be deleted from the dictionary!_
 
@@ -65,6 +70,7 @@ Example:
 ```vim
 let g:minPlug_singleFiles = {
       \ "darkness.vim" : [ "colors", "https://raw.githubusercontent.com/Jorengarenar/vim-darkness/master/colors/darkness.vim" ],
+      \ "sql-upper.vim" : [ "ftplugin/sql", "https://git.io/JkQjr", "~/.vim" ],
       \ }
 ```
 
@@ -96,8 +102,6 @@ _**Please note, that this way is prone to bugs.**_
 :MinPlugInstall
 ```
 
-When it finishes, only the message `DONE` will be shown
-
 ### Download/update plugins overriding local changes
 
 ```vim
@@ -106,9 +110,16 @@ When it finishes, only the message `DONE` will be shown
 
 ### Delete
 
-Remove `MinPlug username/repo` line from _vimrc_, then go to `~/.vim/pack/plugins/opt` and remove the directory of plugin
+Remove `MinPlug username/repo` line from _vimrc_, then go to `<PACKDIR>/opt` and remove the directory of plugin
 
 ---
+
+## Configuration
+
+* [`packpath`](https://vimhelp.org/options.txt.html#%27packpath%27) - plugins will be downloaded into `pack/plugins/opt` subdir of the first enrty in this option
+* `g:minPlug_updateSelf` - whether minPlug should update itself alongside other plugins
+* `g:minPlug_singleFiles` - dictionary containing list of files to download
+* `g:minPlug_echo` (default: 1) - displaying list of plugins during installation or not
 
 #### Additional note
 
