@@ -119,7 +119,7 @@ Remove `MinPlug username/repo` line from _vimrc_, then go to `<PACKDIR>/opt` and
 * [`packpath`](https://vimhelp.org/options.txt.html#%27packpath%27) - plugins will be downloaded into `pack/plugins/opt` subdir of the first enrty in this option
 * `g:minPlug_updateSelf` - whether minPlug should update itself alongside other plugins
 * `g:minPlug_singleFiles` - dictionary containing list of files to download
-* `g:minPlug_echo` (default: 1) - displaying list of plugins during installation or not
+* `g:minPlug_echo` (default: 0) - displaying list of plugins during installation or not
 
 #### Additional note
 

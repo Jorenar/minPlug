@@ -14,7 +14,7 @@ fu! s:install(b) abort
   let l:plugins = s:plugins
   if get(g:, "minPlug_updateSelf", 1) | let l:plugins["Jorengarenar/minPlug"] = "master" | endif
   for [plugin, branch] in items(l:plugins)
-    if get(g:, "minPlug_echo", 1) | echo plugin | endif
+    if get(g:, "minPlug_echo", 0) | echo plugin | endif
     let name = substitute(plugin, ".*\/", "", "")
     let [ dir, url ] = [ packDir."/opt/".name, "https://github.com/".plugin ]
     call system("git clone --recurse --depth=1 -b ".branch." --single-branch ".url
@@ -23,7 +23,7 @@ fu! s:install(b) abort
   endfor
   sil! helpt ALL
   for [ name, o ] in items(get(g:, "minPlug_singleFiles", {}))
-    if get(g:, "minPlug_echo", 1) | echo "file: ".o[0]."/".name | endif
+    if get(g:, "minPlug_echo", 0) | echo "file: ".o[0]."/".name | endif
     let dir = (exists("o[2]") ? o[2] : packDir."/start/singleFiles")."/".o[0]
     call system("curl --create-dirs -o ".dir."/".name." -L ".o[1])
   endfor
