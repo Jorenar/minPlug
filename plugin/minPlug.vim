@@ -12,7 +12,7 @@ fu! s:install(b) abort
   let override = a:b ? "(git reset --hard HEAD && git clean -f -d); " : ""
   sil! call mkdir(packDir."/opt", 'p')
   let l:plugins = s:plugins
-        \  get(g:, "minPlug_updateSelf", 1) ? { "Jorengarenar/minPlug" : "master" } : {}
+        \ + get(g:, "minPlug_updateSelf", 1) ? { "Jorengarenar/minPlug" : "master" } : {}
   for [plugin, branch] in items(l:plugins)
     if get(g:, "minPlug_echo", 1) | echo plugin | endif
     let name = substitute(plugin, ".*\/", "", "")
