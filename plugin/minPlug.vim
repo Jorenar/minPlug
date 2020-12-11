@@ -12,13 +12,13 @@ fu! s:install(b) abort
   let override = a:b ? "(git reset --hard HEAD && git clean -f -d); " : ""
   sil! call mkdir(packDir."/opt", 'p')
   let l:plugins = s:plugins
-        \ + get(g:, "minPlug_updateSelf", 1) ? { "Jorengarenar/minPlug" : "master" } : {}
+  if get(g:, "minPlug_updateSelf", 1) | let l:plugins["Jorengarenar/minPlug"] = "master" | endif
   for [plugin, branch] in items(l:plugins)
     if get(g:, "minPlug_echo", 1) | echo plugin | endif
     let name = substitute(plugin, ".*\/", "", "")
     let [ dir, url ] = [ packDir."/opt/".name, "https://github.com/".plugin ]
-    call system("git clone --recurse --depth=1 -b ".branch." --single-branch ".url.
-          \ " ".dir." 2> /dev/null || (cd ".dir." ; ".override."git pull)")
+    call system("git clone --recurse --depth=1 -b ".branch." --single-branch ".url
+          \ ." ".dir." 2> /dev/null || (cd ".dir." ; ".override."git pull)")
     exe "pa ".name
   endfor
   sil! helpt ALL
