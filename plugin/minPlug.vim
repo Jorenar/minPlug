@@ -5,13 +5,15 @@
 if exists('g:loaded_minPlug') | finish | endif
 let s:cpo_save = &cpo | set cpo&vim
 
-let s:plugins = get(g:, "minPlug_updateSelf", 1) ? { "Jorengarenar/minPlug" : "master" } : {}
+let s:plugins = {}
 
 fu! s:install(b) abort
   let packDir = substitute(&packpath, ",.*", "", "")."/pack/plugins"
   let override = a:b ? "(git reset --hard HEAD && git clean -f -d); " : ""
   sil! call mkdir(packDir."/opt", 'p')
-  for [plugin, branch] in items(s:plugins)
+  let l:plugins = s:plugins
+        \  get(g:, "minPlug_updateSelf", 1) ? { "Jorengarenar/minPlug" : "master" } : {}
+  for [plugin, branch] in items(l:plugins)
     if get(g:, "minPlug_echo", 1) | echo plugin | endif
     let name = substitute(plugin, ".*\/", "", "")
     let [ dir, url ] = [ packDir."/opt/".name, "https://github.com/".plugin ]
