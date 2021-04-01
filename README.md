@@ -55,25 +55,25 @@ Practiacal example: `MinPlug Jorengarenar/miniSnip`
 ### Single files
 
 If you don't want to download whole repository just for one file (e.g. colorscheme),
-just add it to `g:minPlug_singleFiles` dictionary variable in the following manner:
+just add it to `g:minPlug_singleFiles` list variable in the following manner:
 ```vim
-let g:minPlug_singleFiles = {
-      \ "filename" : [ "subdir", "URL", "basedir" ],
-      \ }
+let g:minPlug_singleFiles = [
+      \   [ "subdir/filename", "URL", "basedir" ],
+      \ ]
 ```
 
 `basedir` is optional and defaults to `<PACKDIR>/start/singleFiles`.
 
 File from `URL` will be saved as `filename` in `subdir` of `basedir`
 
-_That means it will be loaded even if entry was to be deleted from the dictionary!_
+_That means it will be loaded even if entry was to be deleted from the list!_
 
 Example:
 ```vim
-let g:minPlug_singleFiles = {
-      \ "darkness.vim" : [ "colors", "https://raw.githubusercontent.com/Jorengarenar/vim-darkness/master/colors/darkness.vim" ],
-      \ "sql-upper.vim" : [ "ftplugin/sql", "https://git.io/JkQjr", "~/.vim" ],
-      \ }
+let g:minPlug_singleFiles = [
+      \   "[ colors/darkness.vim"   , "https://raw.githubusercontent.com/Jorengarenar/vim-darkness/master/colors/darkness.vim" ],
+      \   "[ ftplugin/sql-upper.vim", "https://git.io/JkQjr", "~/.vim" ],
+      \ ]
 ```
 
 _To use this feature you need to have [`curl`](https://curl.se/) installed!_
@@ -120,7 +120,7 @@ Remove `MinPlug username/repo` line from _vimrc_, then go to `<PACKDIR>/opt` and
 
 * [`packpath`](https://vimhelp.org/options.txt.html#%27packpath%27) - plugins will be downloaded into `pack/plugins/opt` subdir of the first enrty in this option
 * `g:minPlug_updateSelf` - whether minPlug should update itself alongside other plugins
-* `g:minPlug_singleFiles` - dictionary containing list of files to download
+* `g:minPlug_singleFiles` - list of files to download
 * `g:minPlug_echo` (default: 0) - displaying list of plugins during installation or not
 * `g:minPlug_paBang` (default: `!`) - if empty, `MinPlug` will load plugins with `:pa`, otherwise with `:pa!` (read [`:h packadd`](https://vimhelp.org/repeat.txt.html#:packadd))
 
