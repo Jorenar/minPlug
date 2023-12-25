@@ -126,5 +126,5 @@ Remove `MinPlug username/repo` line from _vimrc_, then go to `<PACKDIR>/opt` and
 
 #### Additional note
 
-If you added something to the `packpath` option, ensure that your desired
-destination is first in the list (use `^=`, e.g. `set packpath^=$XDG_DATA_HOME/vim`)
+If you added something to the `packpath` option, ensure that your desired destination is first in the list  
+(use `^=`, e.g. `set packpath^=$XDG_DATA_HOME/vim`)
